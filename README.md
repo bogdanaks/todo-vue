@@ -1,19 +1,14 @@
-# todo
+# Todo Vue JS
 
-## Project setup
-```
-npm install
-```
+### Tech
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Technologies used in the project:
 
-### Compiles and minifies for production
-```
-npm run build
-```
+* Vue JS
+* Vuex
+* SCSS
+* Materializecss
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Demo
+### https://bogdanaks.github.io/todo-vue
