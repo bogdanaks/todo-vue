@@ -1,10 +1,11 @@
 <template>
-  <h1>Home page</h1>
+  <Navbar />
 </template>
 
 <script>
+import Navbar from '@/components/Navbar.vue'
 export default {
   name: 'Home',
-  components: {}
+  components: { Navbar }
 }
 </script>
