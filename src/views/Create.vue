@@ -1,11 +1,70 @@
 <template>
-  <Navbar />
+  <div class="container">
+    <div class="row">
+
+      <div class="card blue darken-3 z-depth-2">
+        <div class="card-content white-text">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="taskTitle" type="text" class="validate">
+              <label for="taskTitle">Task Title</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="textarea" class="materialize-textarea"></textarea>
+              <label for="textarea">Task Description</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12">
+              <input type="text" ref="datepicker" class="datepicker">
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          <a href="#">Create task</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
 export default {
-  name: 'Home',
-  components: { Navbar }
+  name: 'Create',
+  components: {  },
+  mounted() {
+    M.Datepicker.init(this.$refs.datepicker, {
+      format: 'dd.mm.yyyy',
+      defaultDate: new Date(),
+      setDefaultDate: true
+    })
+  }
 }
 </script>
+
+<style lang="scss">
+  .row {
+    margin-bottom: 0;
+  }
+  input {
+    color: rgba(255, 255, 255, 0.7); 
+  }
+  textarea {
+    color: rgba(255, 255, 255, 0.7); 
+  }
+  .datepicker-day-button {
+    color: #000;
+  }
+  .datepicker-table td.is-selected {
+    background-color: #1565C0;
+    .datepicker-day-button {
+      color: #fff; 
+    }
+  }
+  .datepicker-date-display {
+    background-color: #1565C0;
+  }
+</style>
