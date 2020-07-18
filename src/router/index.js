@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Create from '../views/Create.vue'
+import List from '../views/List.vue'
 
 Vue.use(VueRouter)
 
@@ -9,6 +10,11 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Create',
     component: Create
+  },
+  {
+    path: '/list',
+    name: 'List',
+    component: List
   },
 ]
 
