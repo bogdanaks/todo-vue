@@ -5,12 +5,12 @@
   <summary>Implement an application that can display the following pages:</summary>
   <ul>
     <li>/ - create</li>
-    <li>/ list - listing all tasks</li>
+    <li>/list - listing all tasks</li>
   </ul>
 </details>
 
 ---
-### Tech
+### Used techs
 
 Technologies used in the project:
 
