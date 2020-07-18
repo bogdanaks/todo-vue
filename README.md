@@ -19,6 +19,7 @@
   	</ul>
 </details>
 <hr/>
+
 ### Tech
 
 Technologies used in the project:
