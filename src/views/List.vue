@@ -12,7 +12,7 @@
                         <p class="right">{{ new Date(task.date).toLocaleDateString() }}</p>
                     </div>
                     <div class="card-action">
-                        <button class="waves-effect waves-teal btn-flat white-text">Delete task</button>
+                        <button @click="deleteHandler(task.id)" class="waves-effect waves-teal btn-flat white-text">Delete task</button>
                     </div>
                 </div>
             </div>
@@ -25,8 +25,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
+    methods: {
+        ...mapActions(['deleteTask']),
+        deleteHandler: function (id) {
+            this.deleteTask(id)
+        }
+    },
     computed: {
         ...mapGetters(['getTasks']),
         tasks: function () {
