@@ -3,44 +3,70 @@
     <div class="row">
 
       <div class="card blue darken-3 z-depth-2">
-        <div class="card-content white-text">
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="taskTitle" type="text" class="validate">
-              <label for="taskTitle">Task Title</label>
+        <form @submit.prevent="submitHandler">
+          <div class="card-content white-text">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="taskTitle" type="text" class="validate" v-model="title">
+                <label for="taskTitle">Task Title</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="textarea" class="materialize-textarea" v-model="description"></textarea>
+                <label for="textarea">Task Description</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <input type="text" ref="datepicker" class="datepicker" v-model="date">
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <textarea id="textarea" class="materialize-textarea"></textarea>
-              <label for="textarea">Task Description</label>
-            </div>
+          <div class="card-action">
+            <button type="submit" class="waves-effect waves-teal btn-flat white-text">Create task</button>
           </div>
-          <div class="row">
-            <div class="col s12">
-              <input type="text" ref="datepicker" class="datepicker">
-            </div>
-          </div>
-        </div>
-        <div class="card-action">
-          <a href="#">Create task</a>
-        </div>
+        </form>
       </div>
-      
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Create',
-  components: {  },
   mounted() {
-    M.Datepicker.init(this.$refs.datepicker, {
+    this.date = M.Datepicker.init(this.$refs.datepicker, {
       format: 'dd.mm.yyyy',
       defaultDate: new Date(),
       setDefaultDate: true
     })
+  },
+  data() {
+    return {
+      title: '',
+      description: '',
+      date: null,
+    }
+  },
+  methods: {
+    ...mapActions(['createTask']),
+    submitHandler() {
+      const task = {
+        title: this.title,
+        description: this.description,
+        date: this.date.date,
+        id: Date.now()
+      }
+      this.createTask(task)
+      this.$router.push({ path: 'list' })
+    }
+  },
+  destroyed() {
+    if (this.date && this.date.destroy) {
+      this.date.destroy()
+    }
   }
 }
 </script>
