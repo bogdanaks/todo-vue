@@ -1,59 +1,38 @@
 <template>
     <div class="row">
 
-        <div class="col s4">
-            <div class="card blue darken-3 z-depth-2 small">
-                <div class="card-content white-text">
-                    <span class="card-title">Card Title</span>
-                    <div class="descContent">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectivelyI am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively</p>
+        <div class="contentCards" v-if="tasks.length">
+            <div class="col s4" v-for="task in tasks" :key="task.id">
+                <div class="card blue darken-3 z-depth-2 small">
+                    <div class="card-content white-text">
+                        <span class="card-title">{{task.title}}</span>
+                        <div class="descContent">
+                            <p>{{task.description}}</p>
+                        </div>
+                        <p class="right">{{ new Date(task.date).toLocaleDateString() }}</p>
                     </div>
-                </div>
-                <div class="card-action">
-                    <button class="waves-effect waves-teal btn-flat white-text">Delete task</button>
+                    <div class="card-action">
+                        <button class="waves-effect waves-teal btn-flat white-text">Delete task</button>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="col s4">
-            <div class="card blue darken-3 z-depth-2 small">
-                <div class="card-content white-text">
-                    <span class="card-title">Card Title</span>
-                    <div class="descContent">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
-                    </div>
-                </div>
-                <div class="card-action">
-                    <button class="waves-effect waves-teal btn-flat white-text">Delete task</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s4">
-            <div class="card blue darken-3 z-depth-2 small">
-                <div class="card-content white-text">
-                    <span class="card-title">Card Title</span>
-                    <div class="descContent">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                        I am convenient because I require little markup to use effectively.</p>
-                    </div>
-                </div>
-                <div class="card-action">
-                    <button class="waves-effect waves-teal btn-flat white-text">Delete task</button>
-                </div>
-            </div>
+        <div class="noTasks" v-else>
+            <h1>No tasks</h1>
         </div>
 
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-
+    computed: {
+        ...mapGetters(['getTasks']),
+        tasks: function () {
+            return this.getTasks
+        }
+    }
 }
 </script>
 
@@ -86,7 +65,7 @@ export default {
     .descContent {
         @extend %scrollbar;
         p {
-            height: 160px;
+            height: 140px;
             overflow-y: auto;
         }
     }
