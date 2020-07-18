@@ -17,5 +17,10 @@ export default new Vuex.Store({
     createTask({commit}, task) {
       commit('createTask', task)
     }
+  },
+  getters: {
+    getTasks(state) {
+      return state.tasks;
+    }
   }
 })
